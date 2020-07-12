@@ -49,21 +49,21 @@ public class PuzzleJava {
         //26 values). Shuffle the array and, after shuffling, display the last letter from the 
         //array. Have it also display the first letter of the array. If the first letter in the 
         //array is a vowel, have it display a message.
-            ArrayList<Character> alpha = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 
+            ArrayList<Character> letters = new ArrayList<>(Arrays.asList('a', 'b', 'c', 'd', 'e', 
             'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
             'w', 'x', 'y', 'z'));
-            Collections.shuffle(alpha);
-            for(int i = 0; i < alpha.size(); i++){
-                if (i == alpha.size() - 1){
-                    System.out.println(alpha.get(i));
+            Collections.shuffle(letters);
+            for(int i = 0; i < letters.size(); i++){
+                if (i == letters.size() - 1){
+                    System.out.println(letters.get(i));
                 }    
             }
-            for(int j = 0; j < alpha.size(); j++){
+            for(int j = 0; j < letters.size(); j++){
                 if (j == 0){
-                    System.out.println(alpha.get(j));
-                    if (alpha.get(j).equals('a') ||  alpha.get(j).equals('e') || alpha.get(j).equals('i') ||
-                    alpha.get(j).equals('o') || alpha.get(j).equals('u') || alpha.get(j).equals('y')){
-                        System.out.println(alpha.get(j) + ": this is a vowel!");
+                    System.out.println(letters.get(j));
+                    if (letters.get(j).equals('a') ||  letters.get(j).equals('e') || letters.get(j).equals('i') ||
+                    letters.get(j).equals('o') || letters.get(j).equals('u') || letters.get(j).equals('y')){
+                        System.out.println(letters.get(j) + ": this is a vowel!");
                     }
                 }
             }
