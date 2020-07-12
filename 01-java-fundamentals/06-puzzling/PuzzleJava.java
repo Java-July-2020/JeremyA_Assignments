@@ -125,6 +125,6 @@ public class PuzzleJava {
                 }
                 randomString[i] = String.valueOf(word1.toString());
                 System.out.println(randomString[i]);
-            }
+            } 
     }
 }
