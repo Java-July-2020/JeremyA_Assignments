@@ -2,7 +2,7 @@ public class Mammal {
 	int energyLevel;
 
 	public Mammal() {
-		energyLevel = 9000;
+		energyLevel = 100;
 	}
 
 	public int displayEnergy() {
