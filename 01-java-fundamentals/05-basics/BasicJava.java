@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 public class BasicJava {   
     public static void main(String[] args) {
         // Print 1-255
