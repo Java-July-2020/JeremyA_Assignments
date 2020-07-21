@@ -19,7 +19,7 @@ public class Application {
 	}
 	@RequestMapping("/random")
 	public String Random() {
-		return "Spring Boot is great! So easy to just respond with strings!";
+		return "Spring Boot is great! So easy to just respond with strings!!";
 	}
 
 }
