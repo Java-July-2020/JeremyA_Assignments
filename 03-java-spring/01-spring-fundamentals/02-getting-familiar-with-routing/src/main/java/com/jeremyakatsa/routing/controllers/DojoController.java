@@ -19,8 +19,10 @@ public class DojoController {
 		model.addAttribute("burbank", locationName);
 		return "Burbank Dojo is located in Southern California!";
 	}
-	@RequestMapping(path="/dojo/san-jose")
-	public String locationName2() {
+	@RequestMapping(path="/dojo/{location}")
+	public String locationName2(		
+	 @PathVariable("location") String locationName2, Model model) {
+		model.addAttribute("san-jose", locationName2);
 		return "SJ dojo is the headquarters!";
 	}
 
