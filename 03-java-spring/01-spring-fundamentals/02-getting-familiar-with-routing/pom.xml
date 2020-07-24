@@ -8,11 +8,11 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jeremyakatsa.codingcontroller</groupId>
+	<groupId>com.jeremyakatsa.routing</groupId>
 	<artifactId>02-getting-familiar-with-routing</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>02-getting-familiar-with-routing</name>
-	<description>Coding Controller project for Spring Boot</description>
+	<description>Routing Project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>

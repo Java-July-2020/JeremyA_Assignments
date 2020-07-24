@@ -1,4 +1,4 @@
-package com.jeremyakatsa.codingcontroller;
+package com.jeremyakatsa.routing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
