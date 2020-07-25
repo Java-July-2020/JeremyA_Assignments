@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CodingController {
 	
+	@RequestMapping("/")
+    public String index() {
+        return "index.jsp";
+    }
+	
 	@RequestMapping("/coding")
 	public String coding() {
 		return "Hello Coding Dojo!";
