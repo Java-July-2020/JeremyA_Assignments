@@ -1,0 +1,22 @@
+h1 {
+	text-align: center;
+	margin: auto;
+	margin-right: 10%;
+        margin-left: 10%;
+        margin-top: 10px;
+        margin-bottom: 10px;	
+}
+
+form {
+	color: black;
+	text-align: center;
+        margin: auto;
+        margin-right: 10%;
+        margin-left: 10%;
+        margin-top: 10%;
+        margin-bottom: 10%;	
+}
+
+div {
+	margin-top: 20px;
+}
