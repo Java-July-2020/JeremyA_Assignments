@@ -11,9 +11,9 @@
 <body>
 	<form id="form" action="/attempt" method="post">
 		<span><c:out value="${ error }" /></span>
-		<br>
+		<hr>
 		<input type="text" name="guess" placeholder="What is the code?" />
-		<br>
+		<hr>
 		<button>GUESS</button>
 	</form>
 </body>
