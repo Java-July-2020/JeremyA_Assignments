@@ -1,0 +1,11 @@
+#form {
+	width: 500px;
+	height: 500px;
+	color: black;
+	text-align: center;
+        margin: auto;
+        padding-right: 10%;
+        padding-left: 10%;
+        padding-top: 10%;
+        padding-bottom: 10%;	
+}
