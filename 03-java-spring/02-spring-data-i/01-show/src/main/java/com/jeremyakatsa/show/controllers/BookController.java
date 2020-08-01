@@ -1,6 +1,5 @@
 package com.jeremyakatsa.show.controllers;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jeremyakatsa.show.models.Book;
 import com.jeremyakatsa.show.services.BookService;
 
 @Controller
@@ -25,7 +25,8 @@ public class BookController {
 	 
 	 @RequestMapping("/books") 
 	 public String index(Model model) { 
-		 List<Book> books = bookService.allBooks(); model.addAttribute("books", books); 
+		 List<Book> books = bookService.allBooks();
+		 model.addAttribute("books", books); 
 		 return "/books/index.jsp"; 
 	 }
 	 
@@ -46,9 +47,9 @@ public class BookController {
       }
   }
   
-  @RequestMapping("/books/{index}")
-  public String findBookByIndex(Model model, @PathVariable("index") Long index) {
-      Book book = bookService.findBook(index);
+  @RequestMapping("/books/{id}")
+  public String findBookByIndex(Model model, @PathVariable("id") Long id) {
+      Book book = bookService.findBook(id);
       model.addAttribute("book", book);
       return "showBook.jsp";
   }

@@ -21,19 +21,15 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
     @Column
     @Size(min = 5, max = 200)
     private String title;
-    
     @Column
     @Size(min = 5, max = 200)
     private String description;
-    
     @Column
     @Size(min = 3, max = 40)
     private String language;
-    
     @Column
     @Min(100)
     private Integer numberOfPages;
@@ -41,15 +37,13 @@ public class Book {
     @Column(updatable=false)
     @DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
     private Date createdAt;
-    
     @DateTimeFormat(pattern = "MM/dd/yyyy HH:mm:ss")
 	private Date updatedAt;
-    
+   
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
-    
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
@@ -57,9 +51,7 @@ public class Book {
 
     public Book() {
     }
-    
-	public Book(@Size(min = 5, max = 200) String title, @Size(min = 5, max = 200) String description,
-			@Size(min = 3, max = 40) String language, @Min(100) Integer numberOfPages) {
+	public Book(String title, String description, String language, Integer numberOfPages) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -70,39 +62,30 @@ public class Book {
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public String getLanguage() {
 		return language;
 	}
-
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-
 	public Integer getNumberOfPages() {
 		return numberOfPages;
 	}
-
 	public void setNumberOfPages(Integer numberOfPages) {
 		this.numberOfPages = numberOfPages;
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	} 
