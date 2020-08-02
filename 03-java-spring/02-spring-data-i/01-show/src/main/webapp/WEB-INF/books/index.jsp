@@ -30,7 +30,7 @@
 		    <td><c:out value="${book.numberOfPages}"/></td>
 		    <td><a href="/books/delete/${loop.index}">Delete</a></td>
 		</tr>
-		</c:forEach>
+		</c:forEach> 
     </tbody>
 </table>
 <a href="/books/new">New Book</a>
