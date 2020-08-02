@@ -35,11 +35,11 @@ public class BookApi {
 	     Book book = bookService.findBook(id);
 	     return book;
 	 }
-	 @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
-	    public Book update(@PathVariable("id") Long id, @RequestParam(value="title") String title, @RequestParam(value="description") String desc, @RequestParam(value="language") String lang, @RequestParam(value="pages") Integer numOfPages) {
-		 Book book = new Book(title, desc, lang, numOfPages);
-		 return bookService.createBook(book);
-	    }
+//	 @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
+//	    public Book update(@PathVariable("id") Long id, @RequestParam(value="title") String title, @RequestParam(value="description") String desc, @RequestParam(value="language") String lang, @RequestParam(value="pages") Integer numOfPages) {
+//		 Book book = new Book(title, desc, lang, numOfPages);
+//		 return bookService.createBook(book);
+//	    }
 	    
 	    @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
 	    public void delete(@PathVariable("id") Long id) {

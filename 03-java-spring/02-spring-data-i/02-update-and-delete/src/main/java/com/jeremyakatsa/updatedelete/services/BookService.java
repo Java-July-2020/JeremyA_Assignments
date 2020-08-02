@@ -43,9 +43,12 @@ public class BookService {
 	         return null;
 	     }
 	 }
-	 public Book updateBook(Long id, Book book) {
-	        return bookRepository.save(id, book);
-	    }
+
+		
+//		 public Book updateBook(Long id, Book book) { return bookRepository.save(id,
+//		 book); 
+//		 }
+		 
 	 public void deleteBook(Long id) {
 	      bookRepository.deleteById(id);
 	     }
