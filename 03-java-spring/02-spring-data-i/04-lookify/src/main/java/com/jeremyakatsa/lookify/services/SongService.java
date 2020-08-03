@@ -9,7 +9,7 @@ import com.jeremyakatsa.lookify.repositories.SongRepository;
 
 @Service
 public class SongService {
-	private final SongRepository songRepo;
+private final SongRepository songRepo;
 	public SongService(SongRepository repo) {
 		this.songRepo = repo;
 	}
