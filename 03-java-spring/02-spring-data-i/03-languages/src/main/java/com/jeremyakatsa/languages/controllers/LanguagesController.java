@@ -1,5 +1,6 @@
 package com.jeremyakatsa.languages.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -19,14 +20,37 @@ import com.jeremyakatsa.languages.services.LanguagesService;
 @Controller
 public class LanguagesController {
 	private final LanguagesService langService;
+	
 	public LanguagesController(LanguagesService service) {
-		langService = service;
+		this.langService = service;
 	}
+	
+//	@RequestMapping("/")
+//	public String Index(Model model) {
+//		model.addAttribute("languages", langService.allLanguages());
+//		return "index.jsp";
+//	}
+////^Above Code as back-up
+	
 	@RequestMapping("/")
-	public String Index(Model model) {
-		model.addAttribute("languages", langService.allLanguages());
-		return "index.jsp";
+	public String index(Model model) {
+		List<Language> languages = langService.allLanguages();
+		model.addAttribute("languages", languages);
+		return "/index.jsp";
 	}
+	
+	
+//	@RequestMapping("/books") 
+//	 public String iindex(Model model) { 
+//		 List<Book> books = bookService.allBooks();
+//		 model.addAttribute("books", books); 
+//		 return "/books/index.jsp"; 
+//	 }
+////^Above Code For Reference
+	 
+	
+	
+	
 	@RequestMapping("/{id}")
 	public String Show(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("language", langService.findLanguage(id));
