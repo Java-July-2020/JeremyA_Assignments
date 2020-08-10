@@ -39,9 +39,9 @@ public class BookController {
 		 
 	  @RequestMapping(value="/books", method=RequestMethod.POST)
 	  public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
-	      if (result.hasErrors()) {
+	      if (result.hasErrors())
 	          return "/books/new.jsp";
-	      } else {
+	       else {
 	          bookService.createBook(book);
 	          return "redirect:/books";
 	      }

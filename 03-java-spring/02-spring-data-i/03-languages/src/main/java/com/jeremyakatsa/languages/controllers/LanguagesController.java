@@ -1,6 +1,5 @@
 package com.jeremyakatsa.languages.controllers;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -25,62 +24,45 @@ public class LanguagesController {
 		this.langService = service;
 	}
 	
-//	@RequestMapping("/")
-//	public String Index(Model model) {
-//		model.addAttribute("languages", langService.allLanguages());
-//		return "index.jsp";
-//	}
-////^Above Code as back-up
-	
 	@RequestMapping("/")
 	public String index(Model model) {
-		List<Language> languages = langService.allLanguages();
-		model.addAttribute("languages", languages);
-		return "/index.jsp";
+		model.addAttribute("languages", langService.allLanguages());
+		return "index.jsp";
 	}
-	
-	
-//	@RequestMapping("/books") 
-//	 public String iindex(Model model) { 
-//		 List<Book> books = bookService.allBooks();
-//		 model.addAttribute("books", books); 
-//		 return "/books/index.jsp"; 
-//	 }
-////^Above Code For Reference
 	 
 	
-	
-	
 	@RequestMapping("/{id}")
-	public String Show(@PathVariable("id") Long id, Model model) {
+	public String show(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("language", langService.findLanguage(id));
 		return "show.jsp";
 	}
 	@RequestMapping("/new")
-	public String New(@ModelAttribute("language") Language language) {
+	public String newLanguage(@ModelAttribute("language") Language language) {
 		return "new.jsp";
 	}
 	@RequestMapping(value="/", method=RequestMethod.POST)
-	public String Create(@Valid @ModelAttribute("language") Language lang, BindingResult result, @RequestParam Map<String,String> body) {
+	public String create(@Valid @ModelAttribute("language") Language lang, BindingResult result, @RequestParam Map<String,String> body) {
 		if(result.hasErrors())
 			return "new.jsp";
-		langService.createLanguage(lang);
-		return "redirect:/";
+		else {
+			langService.createLanguage(lang);
+			return "redirect:/";
+		}
 	}
 	@RequestMapping("/{id}/edit")
-	public String Edit(@PathVariable("id") Long id, Model model) {
+	public String edit(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("language", langService.findLanguage(id));
 		return "edit.jsp";
 	}
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public String Update(@Valid @ModelAttribute("language") Language lang, BindingResult result) {
+	public String update(@Valid @ModelAttribute("language") Language lang, BindingResult result) {
 		if(result.hasErrors())
 			return "edit.jsp";
 		langService.updateLanguage(lang);
 		return "redirect:/";
 	}
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public String Delete(@PathVariable("id") Long id) {
+	public String delete(@PathVariable("id") Long id) {
 		langService.deleteLanguage(id);
 		return "redirect:/";
 	}
