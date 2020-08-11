@@ -9,27 +9,27 @@ import com.jeremyakatsa.languages.repositories.LanguagesRepository;
 
 @Service
 public class LanguagesService {
-	private final LanguagesRepository langRepo;
-	public LanguagesService(LanguagesRepository repo) {
-		langRepo = repo;
+	private final LanguagesRepository languageRepo;
+	public LanguagesService(LanguagesRepository repository) {
+		this.languageRepo = repository;
 	}
 	
 	public List<Language> allLanguages() {
-		return langRepo.findAll();
+		return languageRepo.findAll();
 	}
 	
 	public Language findLanguage(Long id) {
-		return langRepo.findById(id).orElse(null);
+		return languageRepo.findById(id).orElse(null);
 	}
 	public Language createLanguage(Language lang) {
-		return langRepo.save(lang);
+		return languageRepo.save(lang);
 	}
 	
 	public Language updateLanguage(Language lang) {
-		return langRepo.save(lang);
+		return languageRepo.save(lang);
 	}
 	
 	public void deleteLanguage(Long id) {
-		langRepo.deleteById(id);
+		languageRepo.deleteById(id);
 	}
 }
