@@ -2,6 +2,7 @@ package com.jeremyakatsa.languages.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jeremyakatsa.languages.models.Language;
@@ -9,6 +10,7 @@ import com.jeremyakatsa.languages.repositories.LanguagesRepository;
 
 @Service
 public class LanguagesService {
+	@Autowired
 	private final LanguagesRepository languageRepo;
 	public LanguagesService(LanguagesRepository repository) {
 		this.languageRepo = repository;
