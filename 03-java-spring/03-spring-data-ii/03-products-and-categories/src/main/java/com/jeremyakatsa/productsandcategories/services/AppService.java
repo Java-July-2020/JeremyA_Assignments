@@ -21,6 +21,7 @@ public class AppService {
 		this.categoryRepo = catRepo;
 		this.associationRepo = assoRepo;
 	}
+	
 	public List<Product> findProducts() {
 		return this.productRepo.findAll();
 	}
