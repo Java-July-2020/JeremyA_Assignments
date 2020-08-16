@@ -1,8 +1,10 @@
 package com.jeremyakatsa.languages.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jeremyakatsa.languages.models.Language;
 import com.jeremyakatsa.languages.services.LanguagesService;
 
+
 @Controller
 public class LanguagesController {
 	private final LanguagesService langService;
@@ -27,8 +30,14 @@ public class LanguagesController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		model.addAttribute("languages", langService.allLanguages());
-		return "index.jsp";
+		return "/index.jsp";
 	}
+//	@RequestMapping("/") 
+//	 public String index(Model model) { 
+//		 List<Language> languages = langService.allLanguages();
+//		 model.addAttribute("languagess", languages); 
+//		 return "/index.jsp"; 
+//	 }
 	 
 	
 	@RequestMapping("/{id}")

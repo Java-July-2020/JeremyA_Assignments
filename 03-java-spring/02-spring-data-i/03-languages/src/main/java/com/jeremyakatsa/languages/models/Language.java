@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="langs")
+@Table(name="languages")
 public class Language {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
