@@ -24,7 +24,7 @@ public class User {
 	@Email(message="Email must be valid format.")
 	@NotBlank
     private String email;
-	@Size(min=8, message="Password must be longer than 8 characters long with at least 1 number and 1 special character (!, @, #, $, %, ^, &, *, etc)")
+	@Size(min=8, message="Password must be longer than 8 characters long [try to make it as complicated as possible]")
 	@NotBlank
     private String password;
     @Transient
