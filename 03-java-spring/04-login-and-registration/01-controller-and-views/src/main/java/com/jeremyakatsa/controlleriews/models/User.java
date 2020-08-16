@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
@@ -23,6 +24,7 @@ public class User {
 	@Email(message="Email must be valid format.")
 	@NotBlank
     private String email;
+	@Size(min=8, message="Password must be greater than 8 characters long with at least 1 number and 1 special character (!, @, #, $, %, ^, &, *, etc)")
 	@NotBlank
     private String password;
     @Transient
