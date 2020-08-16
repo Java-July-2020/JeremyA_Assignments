@@ -61,9 +61,8 @@ public class Users {
 	@RequestMapping("/home")
 	public String home(HttpSession session, Model model) {
 		Long userID = (Long)session.getAttribute("user_id");
-		User user = this.uService.findAUser(userID);
-		if(userID == null) {
-			return "redirect:/";
+		User user = this.userService.findByEmail(email);
+		return "homePage.jsp";
 	    // get user from session, save them in the model and return the home page
 	}
 	@RequestMapping("/logout")
