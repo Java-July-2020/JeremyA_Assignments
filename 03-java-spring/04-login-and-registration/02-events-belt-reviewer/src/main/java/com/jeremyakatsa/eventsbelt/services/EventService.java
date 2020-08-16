@@ -1,7 +1,13 @@
 package com.jeremyakatsa.eventsbelt.services;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.jeremyakatsa.eventsbelt.models.Event;
 import com.jeremyakatsa.eventsbelt.repositories.EventRepository;
 
+@Service
 public class EventService {
 	private final EventRepository eventRepository;
 	
@@ -10,9 +16,8 @@ public class EventService {
 	}
 	
 		// getSome
-		public Event getSpecificEvents(String state) {
-			Event event = this.eventRepository.findByState(state).orElse(null);
-			return event;
+		public List<Event> getSpecificEvents(String [] state) {
+			return this.eventRepository.findByState(state);
 		}
 		
 		// getAll
@@ -20,27 +25,24 @@ public class EventService {
 			return this.eventRepository.findAll();
 		}
 		
-		public Long getPetContaining(String search) {
-			return this.pRepo.countByNameContaining(search);
+		
+		// createEvent
+		public Event createEvent(Event newEvent) {
+			return this.eventRepository.save(newEvent);
 		}
 		
-		// createPet
-		public Pet createPet(Pet newPet) {
-			return this.pRepo.save(newPet);
+		public Event createEvent(String name, String [] date, String location) {
+			Event newEvent = new Event(name, date, location);
+			return this.eventRepository.save(newEvent);
 		}
 		
-		public Pet createPet(String name, String species, int age) {
-			Pet newPet = new Pet(name, species, age);
-			return this.pRepo.save(newPet);
+		// deleteEvent
+		public void deleteEvent(Long id) {
+			this.eventRepository.deleteById(id);
 		}
-		
-		// deletePet
-		public void deletePet(Long id) {
-			this.pRepo.deleteById(id);
-		}
-		// updatePet
-		public Pet updatePet(Pet updatedPet) {
-			return this.pRepo.save(updatedPet);
+		// updateEvent
+		public Event updateEvent(Event updatedEvent) {
+			return this.eventRepository.save(updatedEvent);
 		}
 
 }

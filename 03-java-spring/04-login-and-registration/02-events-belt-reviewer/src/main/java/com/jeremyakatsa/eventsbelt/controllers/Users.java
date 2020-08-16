@@ -27,29 +27,29 @@ public class Users {
 	    this.userValidator = userValidator;
 	}
 	
-	@RequestMapping("/registration")
+	@RequestMapping("/")
 	public String registerForm(@ModelAttribute("user") User user) {
-	    return "registrationPage.jsp";
+	    return "index.jsp";
 	}
-	@RequestMapping("/login")
+	@RequestMapping("/")
 	public String login() {
-	    return "loginPage.jsp";
+	    return "index.jsp";
 	}
 	
-	@RequestMapping(value="/registration", method=RequestMethod.POST)
+	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		userValidator.validate(user, result);
 		if(result.hasErrors()) {
 			// if result has errors, return the registration page (don't worry about validations just now)
-			return "registrationPage.jsp";
+			return "index.jsp";
 		}
 		User u = this.userService.registerUser(user);
 		session.setAttribute("user_id", u.getId());
-		return "redirect:/home";
+		return "events.jsp";
 	    // else, save the user in the database, save the user id in session, and redirect them to the /home route
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, 
 			RedirectAttributes redirectAt, 
 			Model model, HttpSession session) {
@@ -57,20 +57,20 @@ public class Users {
 		if(this.userService.authenticateUser(email, password)) {
 			User u = this.userService.findByEmail(email);
 			session.setAttribute("user_id", u.getId());
-			return "redirect:/home";
+			return "events.jsp";
 		} else {
 			model.addAttribute("loginError", "Invalid Credentials, please try again.");
-			return "loginPage.jsp";
+			return "index.jsp";
 		    // else, add error messages and return the login page
 		}
 	}
 	
-	@RequestMapping("/home")
+	@RequestMapping("/events")
 	public String home(HttpSession session, Model model) {
 		Long userId = (Long)session.getAttribute("user_id");
 		User u = this.userService.findUserById(userId);
 		model.addAttribute("user", u);
-		return "homePage.jsp";
+		return "events.jsp";
 	    // get user from session, save them in the model and return the home page
 	}
 	@RequestMapping("/logout")
@@ -78,6 +78,6 @@ public class Users {
 	    // invalidate session
 		session.invalidate();
 		// redirect to login page
-		return "redirect:/login";
+		return "redirect:/";
 	}
 }

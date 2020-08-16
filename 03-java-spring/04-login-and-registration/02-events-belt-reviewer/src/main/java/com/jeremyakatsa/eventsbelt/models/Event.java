@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="events")
@@ -22,6 +24,7 @@ public class Event {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	@NotBlank
+	@Size(min=2, max=15)
 	private String name;
 	@NotBlank
 	private String [] date = {"mm/dd/yyy"};
@@ -41,6 +44,13 @@ public class Event {
 	private List<Event> events;
 	
 	public Event() {
+	}
+	
+	public Event(@Size(min = 2, max = 15) String name, @NotNull String [] date, String location) {
+		super();
+		this.name = name;
+		this.date = date;
+		this.location = location;
 	}
 	
 	public Long getId() {
