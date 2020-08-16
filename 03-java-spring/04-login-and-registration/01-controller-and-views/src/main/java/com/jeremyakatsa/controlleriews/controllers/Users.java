@@ -3,6 +3,7 @@ package com.jeremyakatsa.controlleriews.controllers;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jeremyakatsa.controlleriews.models.User;
 import com.jeremyakatsa.controlleriews.services.UserService;
 
+@Controller
 public class Users {
 	
 	private final UserService userService;
@@ -37,8 +39,8 @@ public class Users {
 			// if result has errors, return the registration page (don't worry about validations just now)
 			return "registrationPage.jsp";
 		}
-		User user = this.userService.registerUser(user);
-		session.setAttribute("user_id", user.getId());
+		User u = this.userService.registerUser(user);
+		session.setAttribute("user_id", u.getId());
 		return "redirect:/home";
 	    // else, save the user in the database, save the user id in session, and redirect them to the /home route
 	}
@@ -49,19 +51,21 @@ public class Users {
 			Model model, HttpSession session) {
 	    // if the user is authenticated, save their user id in session
 		if(this.userService.authenticateUser(email, password)) {
-			User user = this.userService.findByEmail(email);
-			session.setAttribute("user_id", user.getId());
-			return "homePage.jsp";
+			User u = this.userService.findByEmail(email);
+			session.setAttribute("user_id", u.getId());
+			return "redirect:/home";
+		} else {
+			model.addAttribute("loginError", "Invalid Credentials, please try again.");
+			return "loginPage.jsp";
+		    // else, add error messages and return the login page
 		}
-		redirectAt.addFlashAttribute("loginError", "Invalid Credentials");
-		return "redirect:/login";
-	    // else, add error messages and return the login page
 	}
 	
 	@RequestMapping("/home")
 	public String home(HttpSession session, Model model) {
-		Long userID = (Long)session.getAttribute("user_id");
-		User user = this.userService.findByEmail(email);
+		Long userId = (Long)session.getAttribute("user_id");
+		User u = this.userService.findUserById(userId);
+		model.addAttribute("user", u);
 		return "homePage.jsp";
 	    // get user from session, save them in the model and return the home page
 	}
