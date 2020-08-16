@@ -1,12 +1,17 @@
 package com.jeremyakatsa.eventsbelt.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -21,20 +26,71 @@ public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+	@NotBlank
+	private String firstName;
+	@NotBlank
+	private String lastName;
 	@Email(message="Email must be valid format.")
 	@NotBlank
     private String email;
-	@Size(min=8, message="Password must be longer than 8 characters long [try to make it as complicated as possible]")
+	@NotBlank
+	private String location;
+	@NotBlank
+	//bottom code to be reviewed...
+	private String[] state = { "CA", "TX", "AZ", "NY", "HV" };
+	//^to be reviewed...
+	@Size(min=8, message="Password must be more than 8 characters long [try to make it as complex as possible]")
 	@NotBlank
     private String password;
-    @Transient
+	@Transient
     private String passwordConfirmation;
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="events",
+    		joinColumns=@JoinColumn(name="event_id")
+    )
+    
+    private List<User> users;
     
     public User() {
+    	
     }
+	
+	public String[] getState() {
+		return state;
+	}
+
+	public void setState(String[] state) {
+		this.state = state;
+	}
+	
+	
+    public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
 
 	public Long getId() {
 		return id;

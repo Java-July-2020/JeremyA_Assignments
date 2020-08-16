@@ -3,12 +3,10 @@ package com.jeremyakatsa.eventsbelt.services;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.stereotype.Service;
 
 import com.jeremyakatsa.eventsbelt.models.User;
 import com.jeremyakatsa.eventsbelt.repositories.UserRepository;
 
-@Service
 public class UserService {
     private final UserRepository userRepository;
     
