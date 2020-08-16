@@ -35,7 +35,7 @@ public class LanguagesController {
 //	@RequestMapping("/") 
 //	 public String index(Model model) { 
 //		 List<Language> languages = langService.allLanguages();
-//		 model.addAttribute("languagess", languages); 
+//		 model.addAttribute("languages", languages); 
 //		 return "/index.jsp"; 
 //	 }
 	 
