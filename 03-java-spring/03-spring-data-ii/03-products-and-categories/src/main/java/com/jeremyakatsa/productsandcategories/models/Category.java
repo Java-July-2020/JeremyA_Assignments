@@ -17,7 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cetegories")
+@Table(name="categories")
 public class Category {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
