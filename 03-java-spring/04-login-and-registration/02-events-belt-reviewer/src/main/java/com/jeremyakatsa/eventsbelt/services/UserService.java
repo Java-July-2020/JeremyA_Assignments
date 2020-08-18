@@ -1,9 +1,11 @@
 package com.jeremyakatsa.eventsbelt.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.jeremyakatsa.eventsbelt.models.Event;
 import com.jeremyakatsa.eventsbelt.models.User;
 import com.jeremyakatsa.eventsbelt.repositories.UserRepository;
 
@@ -25,6 +27,11 @@ public class UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    
+ // getAll users
+    public List<User> getAllUsers(){
+		return this.userRepository.findAll();
+	}
     
     // find user by id
     public User findUserById(Long id) {

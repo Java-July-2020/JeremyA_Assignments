@@ -45,7 +45,7 @@ public class Events {
 		return "events.jsp";
 	}
 	
-	@RequestMapping("/new")
+	@RequestMapping("/")
 	public String create(@ModelAttribute("pet") Pet pet) {
 		return "new.jsp";
 	}
