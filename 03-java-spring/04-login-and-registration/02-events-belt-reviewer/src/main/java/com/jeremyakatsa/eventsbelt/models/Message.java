@@ -28,7 +28,7 @@ public class Message {
 		joinColumns=@JoinColumn(name="user_id"))
 	
 	public Message() {
-	}
+	} 
 	public Long getId() {
 		return id;
 	}
