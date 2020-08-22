@@ -26,7 +26,7 @@ public class Message {
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name="users",
 		joinColumns=@JoinColumn(name="user_id"))
-	
+//	Will return to solve...
 	public Message() {
 	} 
 	public Long getId() {
