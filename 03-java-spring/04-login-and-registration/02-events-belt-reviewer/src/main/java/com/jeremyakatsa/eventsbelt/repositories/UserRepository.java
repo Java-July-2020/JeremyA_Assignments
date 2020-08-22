@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.jeremyakatsa.eventsbelt.models.User;
+import com.jeremyakatsa.eventsbelt.models.EventUser;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-    User findByEmail(String email);
-    List<User> findAll();
+public interface UserRepository extends CrudRepository<EventUser, Long> {
+    EventUser findByEmail(String email);
+    List<EventUser> findAll();
 }

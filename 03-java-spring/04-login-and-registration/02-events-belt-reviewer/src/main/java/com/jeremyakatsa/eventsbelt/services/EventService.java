@@ -2,47 +2,50 @@ package com.jeremyakatsa.eventsbelt.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jeremyakatsa.eventsbelt.models.Event;
+import com.jeremyakatsa.eventsbelt.models.EventUser;
+import com.jeremyakatsa.eventsbelt.models.Message;
 import com.jeremyakatsa.eventsbelt.repositories.EventRepository;
+import com.jeremyakatsa.eventsbelt.repositories.MessageRepository;
 
 @Service
 public class EventService {
-	private final EventRepository eventRepository;
+	@Autowired
+	private EventRepository eRepo;
+	@Autowired
+	private MessageRepository mRepo;
 	
-	public EventService(EventRepository eRepository) {
-		this.eventRepository = eRepository;
+	public List<Event> allEventsWithState(String state) {
+		return this.eRepo.findByState(state);
 	}
 	
-		// getSome
-		public List<Event> getSpecificEvents(String [] state) {
-			return this.eventRepository.findByState(state);
+	public List<Event> allEventsNotState(String state) {
+		return this.eRepo.findByStateIsNot(state);
+	}
+	public Event findById(Long id) {
+		return this.eRepo.findById(id).orElse(null);
+	}
+	public Event create(Event event) {
+		return this.eRepo.save(event);
+	}
+	public Event update(Event event) {
+		return this.eRepo.save(event);
+	}
+	public void comment(EventUser user, Event event, String comment) {
+		this.mRepo.save(new Message(user, event, comment));
+	}
+	public void delete(Long id) {
+		this.eRepo.deleteById(id);
+	}
+	public void manageAttendees(Event event, EventUser user, boolean isJoining) {
+		if(isJoining) {
+			event.getAttendees().add(user);
+		} else {
+			event.getAttendees().remove(user);
 		}
-		
-		// getAll
-		public List<Event> getAllEvents(){
-			return this.eventRepository.findAll();
-		}
-		
-		
-		// createEvent
-		public Event createEvent(Event newEvent) {
-			return this.eventRepository.save(newEvent);
-		}
-		
-		public Event createEvent(String name, String [] date, String location) {
-			Event newEvent = new Event(name, date, location);
-			return this.eventRepository.save(newEvent);
-		}
-		
-		// deleteEvent
-		public void deleteEvent(Long id) {
-			this.eventRepository.deleteById(id);
-		}
-		// updateEvent
-		public Event updateEvent(Event updatedEvent) {
-			return this.eventRepository.save(updatedEvent);
-		}
-
+		this.eRepo.save(event);
+	}
 }

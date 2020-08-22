@@ -1,6 +1,5 @@
 package com.jeremyakatsa.eventsbelt.models;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -13,45 +12,52 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Future;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="events")
-public class Event {
+@Table(name="users")
+public class EventUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@Future
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	private Date eventDate;
 	@NotEmpty
-	private String name;
+	private String firstName;
+	@NotEmpty
+	private String lastName;
+	@Email
+	@NotEmpty
+	private String email;
 	@NotEmpty
 	private String city;
+	@NotEmpty
 	private String state;
+	@NotEmpty
+	@Size(min=8)
+	private String password;
+	@Transient
+	private String passwordConfirmation;
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="event")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="planner")
+    private List<Event> eventsPlanned;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="author")
     private List<Message> messages;
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private EventUser planner;
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(
 		name="users",
-		joinColumns = @JoinColumn(name="event_id"),
-		inverseJoinColumns = @JoinColumn(name="user_id")
+		joinColumns = @JoinColumn(name="user_id"),
+		inverseJoinColumns = @JoinColumn(name="event_id")
 	)
-    private List<EventUser> attendees;
+    private List<Event> eventsAttending;
+    
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
@@ -60,11 +66,8 @@ public class Event {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
-    public String getEventDateFormatted() {
-    	SimpleDateFormat df = new SimpleDateFormat("dd,MM,YYYY");
-    	return df.format(this.eventDate);
-    }
-	public Event() {
+    
+	public EventUser() {
 
 	}
 	public Long getId() {
@@ -73,17 +76,23 @@ public class Event {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getEventDate() {
-		return eventDate;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getName() {
-		return name;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getCity() {
 		return city;
@@ -97,6 +106,18 @@ public class Event {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -109,25 +130,22 @@ public class Event {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public List<Event> getEventsPlanned() {
+		return eventsPlanned;
+	}
+	public void setEventsPlanned(List<Event> eventsPlanned) {
+		this.eventsPlanned = eventsPlanned;
+	}
 	public List<Message> getMessages() {
 		return messages;
 	}
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
-	public EventUser getPlanner() {
-		return planner;
+	public List<Event> getEventsAttending() {
+		return eventsAttending;
 	}
-	public void setPlanner(EventUser planner) {
-		this.planner = planner;
+	public void setEventsAttending(List<Event> eventsAttending) {
+		this.eventsAttending = eventsAttending;
 	}
-	public List<EventUser> getAttendees() {
-		return attendees;
-	}
-	public void setAttendees(List<EventUser> attendees) {
-		this.attendees = attendees;
-	}
-
-
-	}
-	
+}
