@@ -57,7 +57,3 @@
 		</div>
 	</body>
 </html>
-Files
- No file chosen  or 
-Add Github Url
-Privacy Policy
