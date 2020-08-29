@@ -53,7 +53,7 @@
 							</td>
 							<td>
 							<c:choose>
-								<c:when test="${ course.id == true}">
+								<c:when test="${ course.id == true }">
 								<a href="/courses/${ course.id }/a/add">Add</a>	
 								</c:when>
 								<c:otherwise>
@@ -62,7 +62,7 @@
 										<p>FULL</p>
 										</c:when>
 										<c:otherwise>
-											<p>N/A</p>							
+											<p></p>							
 										</c:otherwise>
 									</c:choose>
 								</c:otherwise>
@@ -71,7 +71,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="submit" action="/new" value="Add A Course" modelAttribute="newCourse"/>
+				<input type="submit" action="new" value="Add A Course" modelAttribute="newCourse"/>
 			</div>
 		</div>
 	</body>
