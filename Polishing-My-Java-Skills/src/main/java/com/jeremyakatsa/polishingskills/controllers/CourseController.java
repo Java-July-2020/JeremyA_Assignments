@@ -37,7 +37,6 @@ public class CourseController {
 		return (Long)session.getAttribute("userId");
 	}
 	
-	
 	@GetMapping("")
 	public String Index(@ModelAttribute("course") Course course, Model model, HttpSession session) {
 		Long userId = this.userSessionId(session);
