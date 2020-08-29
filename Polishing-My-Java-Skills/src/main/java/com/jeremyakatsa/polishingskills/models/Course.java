@@ -19,7 +19,8 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 
 @Entity
@@ -33,7 +34,7 @@ public class Course {
 	@NotBlank (message="is required")
 	private String instructor;
 	@NotNull
-	@Size(min=1, message="must be more than 1")
+	@Range(min=0, message="must be more than 1")
 	private int capacity;
 	@Column(updatable=false)
     private Date createdAt;
