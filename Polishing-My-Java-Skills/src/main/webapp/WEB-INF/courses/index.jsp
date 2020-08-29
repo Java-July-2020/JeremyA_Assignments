@@ -5,11 +5,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="/css/main.css">	
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-			rel="stylesheet" 
-			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-			crossorigin="anonymous">
-			<link rel="stylesheet" type="text/css" href="css/main.css">	
+			rel="stylesheet" >
 		<meta charset="ISO-8859-1">
 	<title>Courses</title>
 </head>
@@ -71,7 +69,9 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="submit" action="new" value="Add A Course" modelAttribute="newCourse"/>
+				<form action="/courses/new">
+					<input type="submit" value="Create New Course"/>
+				</form>
 			</div>
 		</div>
 	</body>

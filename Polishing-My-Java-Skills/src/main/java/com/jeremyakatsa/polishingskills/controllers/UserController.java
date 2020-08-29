@@ -26,14 +26,14 @@ public class UserController {
 	
 	@RequestMapping("/")
 	public String Index(@ModelAttribute("user") User user) {
-	    return "/Users/index.jsp";
+	    return "/users/index.jsp";
 	}
 	
 	@PostMapping("/")
 	public String Register(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		validator.validate(user, result);
 		if(result.hasErrors()) {
-			return "/Users/index.jsp";
+			return "/users/index.jsp";
 			}
 		User newUser = this.uService.registerUser(user);
 		session.setAttribute("userId", newUser.getId());

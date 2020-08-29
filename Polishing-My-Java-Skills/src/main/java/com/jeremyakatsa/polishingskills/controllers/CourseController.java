@@ -36,7 +36,6 @@ public class CourseController {
 			return null;
 		return (Long)session.getAttribute("userId");
 	}
-	
 	@GetMapping("")
 	public String Index(@ModelAttribute("course") Course course, Model model, HttpSession session) {
 		Long userId = this.userSessionId(session);
@@ -45,13 +44,13 @@ public class CourseController {
 		User user = this.uService.findById(userId);
 		model.addAttribute("userCourses", this.cService.findById(userId));
 		model.addAttribute("user", user);
-		return "/Courses/index.jsp";
+		return "/courses/index.jsp";
 	}
 	@RequestMapping("/new")
 	public String create(@ModelAttribute("newCourse") Course course, HttpSession session, Model viewModel) {
 		Long userId = (Long)session.getAttribute("userId");
 		viewModel.addAttribute("userId", userId);
-		return "/Courses/new.jsp";
+		return "/courses/new.jsp";
 	}
 	
 	@PostMapping("")
@@ -61,13 +60,13 @@ public class CourseController {
 			User user = this.uService.findById(userId);
 			model.addAttribute("userCourses", this.cService.findById(userId));
 			model.addAttribute("user", user);
-			return "/Courses/index.jsp";
+			return "/courses/index.jsp";
 		}
 		this.cService.create(course);
-		return "/Courses/new.jsp";
+		return "/courses/new.jsp";
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public String Show(@PathVariable("id") Long id, Model model, HttpSession session) {
 		Long userId = this.userSessionId(session);
 		Course course  = this.cService.findById(id);
@@ -77,10 +76,10 @@ public class CourseController {
 			return "redirect:/";
 		model.addAttribute("course", course);
 		model.addAttribute("userId", userId);
-		return "/Courses/show.jsp";
+		return "/courses/show.jsp";
 	}
 
-	@GetMapping("{id}/edit")
+	@GetMapping("/{id}/edit")
 	public String Edit(@PathVariable("id") Long id, HttpSession session, Model model) {
 		Long userId = this.userSessionId(session);
 		Course course = this.cService.findById(id);
@@ -88,25 +87,25 @@ public class CourseController {
 			return "redirect:/courses";
 		model.addAttribute("course", course);
 		model.addAttribute("userId", userId);
-		return "/Courses/edit.jsp";
+		return "/courses/edit.jsp";
 	}
-	@PutMapping("{id}")
+	@PutMapping("/{id}")
 	public String Update(@Valid @ModelAttribute("course") Course course, BindingResult result, @PathVariable("id") Long id, HttpSession session, Model model) {
 		if(result.hasErrors()) {
 			Long userId = this.userSessionId(session);
 			model.addAttribute("course", course);
 			model.addAttribute("userId", userId);
-			return "/Courses/edit.jsp";
+			return "/courses/edit.jsp";
 		}
 		this.cService.update(course);
 		return "redirect:/courses";
 	}
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public String Delete(@PathVariable("id") Long id) {
 		this.cService.delete(id);
 		return "redirect:/courses";
 	}
-	@GetMapping("{id}/a/{choice}")
+	@GetMapping("/{id}/a/{choice}")
 	public String ManageAttendeees(@PathVariable("id") Long id, @PathVariable("choice") String choice, HttpSession session) {
 		Long userId = this.userSessionId(session);
 		Course course = this.cService.findById(id);
