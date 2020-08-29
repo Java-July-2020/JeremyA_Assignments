@@ -32,8 +32,8 @@ public class User {
 	@Email
 	@NotBlank
 	private String email;
-	@NotBlank (message="Password Required")
-	@Size(min=8, message="Password should have more than 8 characters")
+	@NotBlank (message="Required")
+	@Size(min=8, message="should be more than 8 characters")
 	private String password;
 	@Transient
 	private String passwordConfirmation;

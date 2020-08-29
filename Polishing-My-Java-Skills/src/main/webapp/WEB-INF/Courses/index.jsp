@@ -17,7 +17,7 @@
 		<div id="wrapper">
 			<h2>Welcome, ${ user.name }</h2>
 			<hr/>
-			<div class="float float-left" action="/" method="post" modelAttribute="newCourse">
+			<div class="float float-left">
 				<h3>Courses</h3>
 				<table class="table table-hover">
 					<thead>
@@ -53,7 +53,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="submit" value="Add A Course"/>
+				<input type="submit" action="/new" value="Add A Course" modelAttribute="newCourse"/>
 			</div>
 		</div>
 	</body>

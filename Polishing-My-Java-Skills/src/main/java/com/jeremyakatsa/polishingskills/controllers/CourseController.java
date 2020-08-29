@@ -47,6 +47,13 @@ public class CourseController {
 		model.addAttribute("user", user);
 		return "/Courses/index.jsp";
 	}
+	@RequestMapping("/new")
+	public String create(@ModelAttribute("newCourse") Course course, HttpSession session, Model viewModel) {
+		Long userId = (Long)session.getAttribute("userId");
+		viewModel.addAttribute("userId", userId);
+		return "/Courses/new.jsp";
+	}
+	
 	@PostMapping("")
 	public String Create(@Valid @ModelAttribute("newCourse") Course course, BindingResult result, Model model, HttpSession session, @RequestParam Map<String,String> body) {
 		if(result.hasErrors()) {
@@ -57,7 +64,7 @@ public class CourseController {
 			return "/Courses/index.jsp";
 		}
 		this.cService.create(course);
-		return "redirect:/courses";
+		return "/Courses/new.jsp";
 	}
 	
 	@GetMapping("{id}")

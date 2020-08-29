@@ -46,7 +46,7 @@ public class UserController {
 		if(this.uService.authenticateUser(email, password)) {
 			User user = this.uService.getUserByEmail(email);
 			session.setAttribute("userId", user.getId());
-			return "/Courses/index.jsp";
+			return "redirect:/courses";
 		}
 		redirs.addFlashAttribute("error", "Invalid Email/Password Match");
 		return "redirect:/";
