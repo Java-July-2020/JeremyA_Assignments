@@ -9,12 +9,13 @@
 			rel="stylesheet" 
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 			crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/main.css">	
 		<meta charset="ISO-8859-1">
 	<title>Course Platform</title>
 </head>
 	<body>
-		<div class="container">
-			<form:form class="user-form" action="/" method="post" modelAttribute="user">
+		<div id="wrapper">
+			<form:form id="register" action="/" method="post" modelAttribute="user">
 				<h2>Register</h2>
 				<p><form:errors path="user.*"/></p>
 			    <div class="form-group">
@@ -39,7 +40,7 @@
 			    </div>
 			    <input type="submit" value="Register"/>
 			</form:form>
-			<form action="/login" class="user-form" method="post">
+			<form id="login" action="/login" method="post">
 				<h2>Login</h2>
 				<span>${ error }</span>
 				<div class="form-group">
@@ -50,7 +51,7 @@
 			        <label for="password">Password</label>
 			        <input type="password" name="password" id="password" class="form-control" />		        
 			    </div>
-			    <button>Login</button>
+			    <input type="submit" value="Login"/>
 			</form>
 		</div>
 	</body>

@@ -1,0 +1,16 @@
+#wrapper {
+			margin: auto;
+            padding: 100px;
+            width: 1000px;
+            height: auto;
+        }
+            #register{
+                display: inline-block;
+                width: 400px;
+            }
+            #login{
+                display: inline-block;
+                margin-left: 130px;
+                padding-top: 50px;
+                vertical-align: top;
+            }
