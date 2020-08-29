@@ -30,21 +30,39 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href="/courses/${ course.id }">${ course.name }</a></td>
-							<td>${ course.instructor }</td>
-							<td>${ course.capacity }</td>
 							<td>
 							<c:choose>
-								<c:when test="${course.capacity == course.capacity}">
-								<p>FULL</p>
+								<c:when test="${course.id == null}">
+									<p>No Course Available</p>
+								</c:when>
+								<c:otherwise>
+									<a href="/courses/${ course.id }">${ course.name }</a>
+								</c:otherwise>
+							</c:choose>
+							</td>
+							<td>${ course.instructor }</td>
+							<td>
+							<c:choose>
+								<c:when test="${course.capacity == 0}">
+									<p></p>
+								</c:when>
+								<c:otherwise>
+									<p>${ course.capacity }</p>
+								</c:otherwise>
+							</c:choose>
+							</td>
+							<td>
+							<c:choose>
+								<c:when test="${ course.id == true}">
+								<a href="/courses/${ course.id }/a/add">Add</a>	
 								</c:when>
 								<c:otherwise>
 									<c:choose>
-										<c:when test="${ course.capacity != course.capacity }">
-											<a href="/courses/${ course.id }/a/add">Add</a>	
+										<c:when test="${course.capacity > 10}">
+										<p>FULL</p>
 										</c:when>
 										<c:otherwise>
-											<p>Already Added</p>							
+											<p>N/A</p>							
 										</c:otherwise>
 									</c:choose>
 								</c:otherwise>
