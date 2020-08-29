@@ -27,7 +27,6 @@ public class UserValidator implements Validator {
         if (!user.getPassword().equals(user.getPasswordConfirmation())) {
             errors.rejectValue("passwordConfirmation", "Unique", "Must Match Original Password");
         }  
-        
       
     }
 	
