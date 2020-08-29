@@ -18,7 +18,6 @@
 	<div id="wrapper">
 		<h2>Create New Course</h2>
 			<form:form action="/courses" method="post" modelAttribute="newCourse">
-				<input type="hidden" name="_method" value="put">
 				<form:hidden value="${ user.name }" path="name"/>
 				<div class="form-group">
 					<form:label path="name">Name</form:label>

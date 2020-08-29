@@ -60,10 +60,10 @@ public class CourseController {
 			User user = this.uService.findById(userId);
 			model.addAttribute("userCourses", this.cService.findById(userId));
 			model.addAttribute("user", user);
-			return "/courses/index.jsp";
+			return "/courses/new.jsp";
 		}
 		this.cService.create(course);
-		return "/courses/new.jsp";
+		return "redirect:/courses";
 	}
 	
 	@GetMapping("/{id}")

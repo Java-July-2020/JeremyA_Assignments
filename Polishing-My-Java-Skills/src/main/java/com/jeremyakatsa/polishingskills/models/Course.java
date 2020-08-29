@@ -18,6 +18,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -27,12 +28,12 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank
+	@NotBlank (message="is required")
 	private String name;
-	@NotBlank
+	@NotBlank (message="is required")
 	private String instructor;
-	@NotBlank
-	@Size(min=1)
+	@NotNull
+	@Size(min=1, message="must be more than 1")
 	private int capacity;
 	@Column(updatable=false)
     private Date createdAt;
