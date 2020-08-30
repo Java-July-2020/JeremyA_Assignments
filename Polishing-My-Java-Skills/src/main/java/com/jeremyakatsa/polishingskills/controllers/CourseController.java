@@ -54,7 +54,7 @@ public class CourseController {
 	}
 	
 	@PostMapping("")
-	public String Create(@Valid @ModelAttribute("newCourse") Course course, BindingResult result, Model model, HttpSession session, @RequestParam Map<String,String> body) {
+	public String Create(@Valid @ModelAttribute("course") Course course, BindingResult result, Model model, HttpSession session, @RequestParam Map<String,String> body) {
 		if(result.hasErrors()) {
 			Long userId = this.userSessionId(session);
 			User user = this.uService.findById(userId);
@@ -75,7 +75,7 @@ public class CourseController {
 		if(course == null)
 			return "redirect:/";
 		model.addAttribute("course", course);
-		model.addAttribute("userId", userId);
+		model.addAttribute("user", userId);
 		return "/courses/show.jsp";
 	}
 
@@ -86,7 +86,7 @@ public class CourseController {
 		if(userId == null)
 			return "redirect:/courses";
 		model.addAttribute("course", course);
-		model.addAttribute("userId", userId);
+		model.addAttribute("user", userId);
 		return "/courses/edit.jsp";
 	}
 	@PutMapping("/{id}")
@@ -94,7 +94,7 @@ public class CourseController {
 		if(result.hasErrors()) {
 			Long userId = this.userSessionId(session);
 			model.addAttribute("course", course);
-			model.addAttribute("userId", userId);
+			model.addAttribute("user", userId);
 			return "/courses/edit.jsp";
 		}
 		this.cService.update(course);

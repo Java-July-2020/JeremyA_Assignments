@@ -1,5 +1,7 @@
 package com.jeremyakatsa.polishingskills.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class CourseService {
 	}
 	public Course create(Course course) {
 		return this.cRepo.save(course);
+	}
+	public List<Course> getAllCourses(){
+		return this.cRepo.findAll();
 	}
 	public Course update(Course course) {
 		return this.cRepo.save(course);
