@@ -8,6 +8,9 @@ import org.springframework.validation.Validator;
 import com.jeremyakatsa.polishingskills.models.User;
 import com.jeremyakatsa.polishingskills.repositories.UserRepository;
 
+//hibernate dependency important for validations
+
+
 @Component
 public class UserValidator implements Validator {
 	@Autowired
